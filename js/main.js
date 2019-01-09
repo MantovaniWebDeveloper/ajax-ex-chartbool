@@ -2,23 +2,7 @@ $(document).ready(function() {
   //alert("vivo");
   //variabilizzo la mia uri
   var url = "http://157.230.17.132:4006/sales"
-  //metto un target su html
-  var graficoVenditeCanvas = $("#myChart");
 
-  //creo il grafico
-  var graficoVenditeMensili = new Chart(graficoVenditeCanvas, {
-      type: 'line',
-      data: {
-          labels: ["Gennaio", "Febbraio", "Marzo", "Aprile", "Maggio", "Giugno","Luglio", "Agosto", "Settembre", "Ottobre", "Novembre", "Dicembre"],
-          datasets: [{
-            label: "Vendite",
-            data: [1230, 2000, 500, 2800, 3500, 1000, 3980,1230, 2000, 500, 2800, 3500, 1000],
-            lineTension: 0,
-            backgroundColor: 'transparent',
-          }]
-      }
-
-  });
 
   /*var mese = moment("27-11-1984","DD-MM-YYY");
   console.log(mese.format("M"));
@@ -28,21 +12,117 @@ $(document).ready(function() {
   $.ajax({
     url: url,
     type: "GET",
-    success: function(data){
+    success: function(data) {
       console.log(data);
 
-      var totaleGennaio = 0 ;
+      var totaleGennaio = 0;
+      var totaleFebbraio = 0;
+      var totaleMarzo = 0;
+      var totaleAprile = 0;
+      var totaleMaggio = 0;
+      var totaleGiugno = 0;
+      var totaleLuglio = 0;
+      var totaleAgosto = 0;
+      var totaleSettembre = 0;
+      var totaleOttobre = 0;
+      var totaleNovembre = 0;
+      var totaleDicembre = 0;
+
+
 
       for (var i = 0; i < data.length; i++) {
+        console.log("id " + data[i].id);
         /*FORMATTATO TUTTE LE DATE IN NUMERO MESE*/
         var dataGenerale = data[i].date;
-        var mese = moment(dataGenerale,"DD/MM/YYY");
+        var mese = moment(dataGenerale, "DD/MM/YYY");
         var meseFormattato = mese.format("M");
-        console.log(meseFormattato);
-        
+        console.log("mese " + meseFormattato);
+        var vendita = data[i].amount;
+        console.log("vendita " + vendita);
+
+        switch (meseFormattato) {
+
+          case "1":
+            totaleGennaio = totaleGennaio + vendita;
+            break;
+
+          case "2":
+            totaleFebbraio = totaleFebbraio + vendita;
+            break;
+
+          case "3":
+            totaleMarzo = totaleMarzo + vendita;
+            break;
+
+          case "4":
+            totaleAprile = totaleAprile + vendita;
+            break;
+
+          case "5":
+            totaleMaggio = totaleMaggio + vendita;
+            break;
+
+          case "6":
+            totaleGiugno = totaleGiugno + vendita;
+            break;
+
+          case "7":
+            totaleLuglio = totaleLuglio + vendita;
+            break;
+
+          case "8":
+            totaleAgosto = totaleAgosto + vendita;
+            break;
+
+          case "9":
+            totaleSettembre = totaleSettembre + vendita;
+            break;
+
+          case "10":
+            totaleOttobre = totaleOttobre + vendita;
+            break;
+
+          case "11":
+            totaleNovembre = totaleNovembre + vendita;
+            break;
+
+          case "12":
+            totaleDicembre = totaleDicembre + vendita;
+            break;
+        }
       }
+      console.log("totale gennaio " + totaleGennaio);
+      console.log("totale febbraio " + totaleFebbraio);
+      console.log("totale marzo " + totaleMarzo);
+      console.log("totale aprile " + totaleAprile);
+      console.log("totale maggio " + totaleMaggio);
+      console.log("totale giugno " + totaleGiugno);
+      console.log("totale Luglio " + totaleLuglio);
+      console.log("totale Agosto " + totaleAgosto);
+      console.log("totale Settembre " + totaleSettembre);
+      console.log("totale ottobre " + totaleOttobre);
+      console.log("totale Novembre " + totaleNovembre);
+      console.log("totale dicembre " + totaleDicembre);
+
+      //metto un target su html
+      var graficoVenditeCanvas = $("#myChart");
+
+      //creo il grafico
+      var graficoVenditeMensili = new Chart(graficoVenditeCanvas, {
+        type: 'line',
+        data: {
+          labels: ["Gennaio", "Febbraio", "Marzo", "Aprile", "Maggio", "Giugno", "Luglio", "Agosto", "Settembre", "Ottobre", "Novembre", "Dicembre"],
+          datasets: [{
+            label: "Vendite",
+            data: [totaleGennaio, totaleFebbraio, totaleMarzo, totaleAprile, totaleMaggio, totaleGiugno, totaleLuglio, totaleAgosto, totaleSettembre, totaleOttobre, totaleNovembre, totaleDicembre],
+            lineTension: 0,
+            backgroundColor: 'transparent',
+          }]
+        }
+
+      });
     },
-    error: function(errore){
+    error: function(errore) {
       console.log(errore);
     }
   });
