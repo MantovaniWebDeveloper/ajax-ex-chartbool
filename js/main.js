@@ -140,7 +140,7 @@ $(document).ready(function() {
   }
   function calcoloPercentualeVenditore(data) {
 
-    var venditoreObj = {};
+    var venditori = [];
     var vendutoTotale = 0;
     var venditaVenditoreTotale = 0;
     var percentualeVenditore = 0;
@@ -153,18 +153,30 @@ $(document).ready(function() {
       /*NOMI VENDITORI*/
       var nome = data[i].salesman;
       console.log("nome venditore " + nome);
-      venditoreObj.nomeVenditore = nome;
-      venditoreObj.venduto = vendita;
 
-      vendutoTotale = vendutoTotale + venditoreObj.venduto ;
+      venditore = {
+        nome : nome,
+        vendite : vendita
+      }
+
+      venditori.push(venditore);
+    /*  vendutoTotale = vendutoTotale + venditoreObj.venduto ;
       console.log("vendutoTotale: " + vendutoTotale);
 
       if(venditoreObj.nomeVenditore == nome) {
         venditaVenditoreTotale = venditaVenditoreTotale + vendita;
         console.log("nome Venditore: " + venditoreObj.nomeVenditore + " totale venduto " + venditaVenditoreTotale);
-      }
+      }*/
     }
 
+      console.log(venditori);
+    for (var i = 0; i < venditori.length; i++) {
+      vendutoTotale = vendutoTotale + venditori[i].vendite ;
+      if(venditori[i].nome.includes(venditori[i].nome.includes)){
+        console.log("trovato");
+      }
+    }
+    console.log("vendutoTotale: " + vendutoTotale);
 
     //metto un target su html
     var graficoPercentualeVendite = $("#myChartTorta");
