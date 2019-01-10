@@ -32,12 +32,16 @@ $(document).ready(function() {
     console.log(meseScelto);
     var nuovaVendita = $("#nuovaVenditaText").val();
     console.log(nuovaVendita);
-
-  /*  $.ajax({
+    $.ajax({
       url: url,
       type: "POST",
+      data: {
+        "salesman": nomeScelto,
+        "date": meseScelto,
+        "amount" : nuovaVendita
+      },
       success: function(data) {
-        console.log(data);
+        console.log("dopo post " + data);
         calcoloFatturatoMensile(data);
         calcoloPercentualeVenditore(data);
 
@@ -45,7 +49,7 @@ $(document).ready(function() {
       error: function(errore) {
         console.log(errore);
       }
-    });*/
+    });
   });
 
   function calcoloFatturatoMensile(data) {
