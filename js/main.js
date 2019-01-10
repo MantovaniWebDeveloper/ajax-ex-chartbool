@@ -75,7 +75,7 @@ $(document).ready(function() {
       var meseFormattato = mese.format("MMMM");
       console.log("mese " + meseFormattato);
       /*VENDITE*/
-      var vendita = data[i].amount;
+      var vendita = parseInt(data[i].amount);
 
       meseObj[meseFormattato] += vendita;
 
@@ -122,7 +122,8 @@ $(document).ready(function() {
     for (var i = 0; i < data.length; i++) {
       var vendita = data[i];
       var nome = vendita.salesman;
-      var venditaVenditore = vendita.amount;
+      var venditaVenditore = parseInt(vendita.amount);
+      console.log("vendita parsata " + venditaVenditore);
       console.log(vendita);
       console.log(venditoriObj[nome]);
       if (venditoriObj[nome] == undefined) {
@@ -185,5 +186,6 @@ $(document).ready(function() {
       $("#mesi").html();
     }
   }
+  
 
 });
