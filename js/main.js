@@ -153,15 +153,21 @@ $(document).ready(function() {
         venditoriObj[nome] = 0;
       }
       venditoriObj[nome] += venditaVenditore;
+      vendutoTotale = vendutoTotale + venditaVenditore;
     }
-
+    console.log("venduto totale: " + vendutoTotale);
     console.log(venditoriObj);
 
     var arrayNomi = [];
     var arrayVendite = [];
 
     for (var nomeVenditore in venditoriObj) {
+      console.log(nomeVenditore);
       arrayNomi.push(nomeVenditore);
+      percentualeVenditore = venditoriObj[nomeVenditore] / vendutoTotale * 100;
+      var percentualeVenditoreArrotondata = percentualeVenditore.toFixed(2);
+      console.log(percentualeVenditoreArrotondata);
+      arrayVendite.push(percentualeVenditoreArrotondata);
     }
 
     //metto un target su html
@@ -173,7 +179,7 @@ $(document).ready(function() {
       data: {
         labels: arrayNomi,
         datasets: [{
-          data: [24, 50, 47, 24],
+          data: arrayVendite,
           backgroundColor: [
             "#FF6384",
             "#63FF84",
