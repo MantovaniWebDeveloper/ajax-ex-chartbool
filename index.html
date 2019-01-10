@@ -1,20 +1,34 @@
 <!DOCTYPE html>
 <html lang="it" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <link rel="stylesheet" href="css/style.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <title>chartbool by Dario Mantovani</title>
-  </head>
-  <body>
-    <div class="container">
-      <canvas id="myChart"></canvas>
+
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <title>chartbool by Dario Mantovani</title>
+</head>
+
+<body>
+  <div class="container">
+    <div class="wrapNuovoElemento">
+      <select name="" id="nomiVenditori">
+
+
+      </select>
+      <select class="" id="mesi">
+
+      </select>
+      <input type="text" name="" value="" placeholder="valore vendita">
+      <button type="button" name="button">Salva vendita</button>
     </div>
-    <div id="area2" class="container">
-      <canvas id="myChartTorta"></canvas>
-    </div>
+    <canvas id="myChart"></canvas>
+  </div>
+  <div id="area2" class="container">
+    <canvas id="myChartTorta"></canvas>
+  </div>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script>
   <script src="js/moment.min.js"></script>
   <script src="js/main.js"></script>
-  </body>
+</body>
+
 </html>

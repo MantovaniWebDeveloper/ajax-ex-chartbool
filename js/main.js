@@ -190,6 +190,17 @@ $(document).ready(function() {
       }
 
     });
+
+    stampaNomiHtml(arrayNomi);
+  }
+  //funzione che stampa i nomi venditori nella select
+  function stampaNomiHtml(arrayNomi){
+
+      for (var i = 0; i < arrayNomi.length; i++) {
+        $("#nomiVenditori").append("<option id="+[i]+">"+ arrayNomi[i] + "</option>")
+        $("#nomiVenditori").html();
+      }
+    }
   }
 
-});
+);
