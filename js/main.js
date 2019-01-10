@@ -82,6 +82,8 @@ $(document).ready(function() {
         }
 
       });
+
+      stampaMesiHtml(arrayMesi);
     }
 
     function calcoloPercentualeVenditore(data) {
@@ -149,6 +151,13 @@ $(document).ready(function() {
         $("#nomiVenditori").html();
       }
     }
-  }
+    function stampaMesiHtml(arrayMesi) {
 
+      for (var i = 0; i < arrayMesi.length; i++) {
+        $("#mesi").append("<option id=" + [i] + ">" + arrayMesi[i] + "</option>")
+        $("#mesi").html();
+      }
+    }
+
+  }
 );
