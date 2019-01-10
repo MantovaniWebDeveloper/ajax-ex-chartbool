@@ -26,7 +26,7 @@ $(document).ready(function() {
 
 
 
-  function calcoloFatturatoMensile (data){
+  function calcoloFatturatoMensile(data) {
     var totaleGennaio = 0;
     var totaleFebbraio = 0;
     var totaleMarzo = 0;
@@ -51,9 +51,6 @@ $(document).ready(function() {
       /*VENDITE*/
       var vendita = data[i].amount;
       console.log("vendita " + vendita);
-      /*NOMI VENDITORI*/
-      var nome = data[i].salesman;
-      console.log("nome venditore " + nome);
 
       switch (meseFormattato) {
 
@@ -138,61 +135,50 @@ $(document).ready(function() {
 
     });
   }
+
   function calcoloPercentualeVenditore(data) {
 
-    var venditori = [];
+    var venditoriObj = {};
     var vendutoTotale = 0;
     var venditaVenditoreTotale = 0;
     var percentualeVenditore = 0;
 
     for (var i = 0; i < data.length; i++) {
-      console.log("id " + data[i].id);
-      /*VENDITE*/
-      var vendita = data[i].amount;
-      console.log("vendita " + vendita);
-      /*NOMI VENDITORI*/
-      var nome = data[i].salesman;
-      console.log("nome venditore " + nome);
-
-      venditore = {
-        nome : nome,
-        vendite : vendita
+      var vendita = data[i];
+      var nome = vendita.salesman;
+      var venditaVenditore = vendita.amount;
+      console.log(vendita);
+      console.log(venditoriObj[nome]);
+      if (venditoriObj[nome] == undefined) {
+        venditoriObj[nome] = 0;
       }
-
-      venditori.push(venditore);
-    /*  vendutoTotale = vendutoTotale + venditoreObj.venduto ;
-      console.log("vendutoTotale: " + vendutoTotale);
-
-      if(venditoreObj.nomeVenditore == nome) {
-        venditaVenditoreTotale = venditaVenditoreTotale + vendita;
-        console.log("nome Venditore: " + venditoreObj.nomeVenditore + " totale venduto " + venditaVenditoreTotale);
-      }*/
+      venditoriObj[nome] += venditaVenditore;
     }
 
-      console.log(venditori);
-    for (var i = 0; i < venditori.length; i++) {
-      vendutoTotale = vendutoTotale + venditori[i].vendite ;
-      if(venditori[i].nome.includes(venditori[i].nome.includes)){
-        console.log("trovato");
-      }
+    console.log(venditoriObj);
+
+    var arrayNomi = [];
+    var arrayVendite = [];
+
+    for (var nomeVenditore in venditoriObj) {
+      arrayNomi.push(nomeVenditore);
     }
-    console.log("vendutoTotale: " + vendutoTotale);
 
     //metto un target su html
     var graficoPercentualeVendite = $("#myChartTorta");
 
     //creo il grafico
-    var graficoVenditeMensili = new Chart(graficoPercentualeVendite, {
+    var graficoVenditeVenditore = new Chart(graficoPercentualeVendite, {
       type: 'doughnut',
-      data : {
-        labels: ["Dario","Andrea","Cosimo","Lorenzo"],
+      data: {
+        labels: arrayNomi,
         datasets: [{
-          data: [24,50,47,24],
+          data: [24, 50, 47, 24],
           backgroundColor: [
-              "#FF6384",
-              "#63FF84",
-              "#84FF63",
-              "#8463FF"
+            "#FF6384",
+            "#63FF84",
+            "#84FF63",
+            "#8463FF"
           ]
         }]
       }
