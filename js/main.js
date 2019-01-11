@@ -10,19 +10,8 @@ $(document).ready(function() {
 
   //invoco una chiamata ajax in get per leggere tutti i dati
   //e sommare le vendite per ogni mese
-  $.ajax({
-    url: url,
-    type: "GET",
-    success: function(data) {
-      console.log(data);
-      calcoloFatturatoMensile(data);
-      calcoloPercentualeVenditore(data);
 
-    },
-    error: function(errore) {
-      console.log(errore);
-    }
-  });
+  leggiValoriGet(url);
 
   $("#salva").click(function(){
     //recupero select
@@ -43,19 +32,7 @@ $(document).ready(function() {
       success: function(data) {
         console.log("dopo post " + data);
 
-        $.ajax({
-          url: url,
-          type: "GET",
-          success: function(data) {
-            console.log(data);
-            calcoloFatturatoMensile(data);
-            calcoloPercentualeVenditore(data);
-
-          },
-          error: function(errore) {
-            console.log(errore);
-          }
-        });
+        leggiValoriGet(url);
 
       },
       error: function(errore) {
@@ -63,6 +40,22 @@ $(document).ready(function() {
       }
     });
   });
+
+  function leggiValoriGet(url){
+    $.ajax({
+      url: url,
+      type: "GET",
+      success: function(data) {
+        console.log(data);
+        calcoloFatturatoMensile(data);
+        calcoloPercentualeVenditore(data);
+
+      },
+      error: function(errore) {
+        console.log(errore);
+      }
+    });
+  }
 
   function calcoloFatturatoMensile(data) {
     var meseObj = {
