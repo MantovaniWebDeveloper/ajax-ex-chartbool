@@ -183,8 +183,8 @@ $(document).ready(function() {
 
   function stampaMesiHtml(arrayMesi) {
 
-    for (var i = 1; i < arrayMesi.length; i++) {
-      $("#mesi").append("<option value=" + "1/"+[i]+"/2017" + ">" + arrayMesi[i] + "</option>")
+    for (var i = 0; i < arrayMesi.length; i++) {
+      $("#mesi").append("<option value=" + "1/"+[i + 1]+"/2017" + ">" + arrayMesi[i] + "</option>")
       $("#mesi").html();
     }
   }
