@@ -42,8 +42,20 @@ $(document).ready(function() {
       },
       success: function(data) {
         console.log("dopo post " + data);
-        calcoloFatturatoMensile(data);
-        calcoloPercentualeVenditore(data);
+
+        $.ajax({
+          url: url,
+          type: "GET",
+          success: function(data) {
+            console.log(data);
+            calcoloFatturatoMensile(data);
+            calcoloPercentualeVenditore(data);
+
+          },
+          error: function(errore) {
+            console.log(errore);
+          }
+        });
 
       },
       error: function(errore) {
