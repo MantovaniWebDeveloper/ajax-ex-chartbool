@@ -28,7 +28,7 @@ $(document).ready(function() {
     //recupero select
     var nomeScelto = $("#nomiVenditori").val();
     console.log(nomeScelto);
-    var meseScelto = $("#mesi").children('option').val();
+    var meseScelto = $("#mesi").val();
     console.log(meseScelto);
     var nuovaVendita = $("#nuovaVenditaText").val();
     console.log(nuovaVendita);
