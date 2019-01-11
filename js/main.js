@@ -28,7 +28,7 @@ $(document).ready(function() {
     //recupero select
     var nomeScelto = $("#nomiVenditori").val();
     console.log(nomeScelto);
-    var meseScelto = $("#mesi").val();
+    var meseScelto = $("#mesi").children('option').val();
     console.log(meseScelto);
     var nuovaVendita = $("#nuovaVenditaText").val();
     console.log(nuovaVendita);
@@ -70,12 +70,14 @@ $(document).ready(function() {
 
     for (var i = 0; i < data.length; i++) {
       /*DATA*/
-      var dataGenerale = data[i].date;
+      var vendita = data[i];
+      var dataGenerale = vendita.date;
       var mese = moment(dataGenerale, "DD/MM/YYY");
       var meseFormattato = mese.format("MMMM");
       console.log("mese " + meseFormattato);
       /*VENDITE*/
-      var vendita = parseInt(data[i].amount);
+      var vendita = parseInt(vendita.amount);
+      console.log("vendita parsata " + vendita);
 
       meseObj[meseFormattato] += vendita;
 
@@ -181,11 +183,12 @@ $(document).ready(function() {
 
   function stampaMesiHtml(arrayMesi) {
 
-    for (var i = 0; i < arrayMesi.length; i++) {
-      $("#mesi").append("<option id=" + [i] + ">" + arrayMesi[i] + "</option>")
+    for (var i = 1; i < arrayMesi.length; i++) {
+      $("#mesi").append("<option value=" + "1/"+[i]+"/2017" + ">" + arrayMesi[i] + "</option>")
       $("#mesi").html();
     }
   }
-  
+
+
 
 });
